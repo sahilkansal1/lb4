@@ -11,8 +11,9 @@ export class Customer extends Basemodel {
   @property({
     type: 'string',
     required: true,
+    name:'name'
   })
-  customer_name: string;
+  customerName: string;
 
   @property({
     type: 'string',
