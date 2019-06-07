@@ -9,7 +9,7 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import * as path from 'path';
 import {MySequence} from './sequence';
-
+import * as dotenv from 'dotenv';
 export class TaskApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
@@ -27,7 +27,7 @@ export class TaskApplication extends BootMixin(
       path: '/explorer',
     });
     this.component(RestExplorerComponent);
-
+    // dotenv.config();
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
@@ -38,5 +38,6 @@ export class TaskApplication extends BootMixin(
         nested: true,
       },
     };
+    dotenv.config();
   }
 }

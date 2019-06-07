@@ -1,11 +1,10 @@
 {
-  "name": "crudapp",
+  "name": "pgdb",
   "connector": "postgresql",
-  "url": "",
-  "host": "localhost",
-  "port": 5432,
-  "user": "postgres",
+  "host": "DB_HOST",
+  "port": "DB_PORT",
+  "user": "DB_USER",
   "password": "postgrestest",
-  "database": "postgres",
-  "schema": "crudapp"
+  "database": "DB_DATABASE",
+  "schema": "DB_SCHEMA"
 }

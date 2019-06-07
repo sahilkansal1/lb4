@@ -1,7 +1,7 @@
-import {model, property, Entity} from '@loopback/repository';
-
+import {model, property} from '@loopback/repository';
+import {Base} from './base.model';
 @model({settings: {}})
-export class Users extends Entity {
+export class Users extends Base {
   @property({
     type: 'number',
     id: true,
@@ -54,21 +54,6 @@ export class Users extends Entity {
     required: true,
   })
   roles: number;
-
-  @property({
-    type: 'date',
-    required: true,
-    name: 'created_at',
-  })
-  createdAt: string;
-
-  @property({
-    type: 'date',
-    required: true,
-    name: 'modified_at',
-  })
-  modifiedAt: Date;
-
   constructor(data?: Partial<Users>) {
     super(data);
   }

@@ -17,14 +17,14 @@ export class Basemodel extends Entity {
   createdBy: number;
   @property({
     type: 'date',
-    required: true,
+
     name: 'created_at',
   })
   createdAt: string;
 
   @property({
     type: 'date',
-    required: true,
+
     name: 'modified_at',
   })
   modifiedAt: Date;
