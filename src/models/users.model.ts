@@ -1,5 +1,6 @@
-import {model, property} from '@loopback/repository';
+import {model, property, belongsTo, hasMany} from '@loopback/repository';
 import {Base} from './base.model';
+import {Customer} from './customer.model';
 @model({settings: {}})
 export class Users extends Base {
   @property({
@@ -11,20 +12,24 @@ export class Users extends Base {
   @property({
     type: 'string',
     required: true,
+    name: 'first_name',
   })
-  first_name: string;
-
+  firstName: string;
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
-    default: 1,
+    default: 2,
   })
-  customer: number;
+  customer?: string;
+
+  // @hasMany(() => Customer)
+  // customer?: number;
 
   @property({
     type: 'string',
+    name: 'middle_name',
   })
-  middle_name?: string;
+  middleName?: string;
 
   @property({
     type: 'string',
@@ -40,8 +45,9 @@ export class Users extends Base {
 
   @property({
     type: 'number',
+    name: 'phone_no',
   })
-  phone_no?: number;
+  phoneNo?: number;
 
   @property({
     type: 'string',
@@ -58,3 +64,8 @@ export class Users extends Base {
     super(data);
   }
 }
+// export interface UserRealation {
+//   customer?: CustomerWithRelations;
+// }
+
+export type OrderWithRelations = Users;

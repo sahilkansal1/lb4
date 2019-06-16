@@ -1,33 +1,19 @@
-import {Entity, model, property} from '@loopback/repository';
-
+import {model, property} from '@loopback/repository';
+import {Base} from './base.model';
 @model({settings: {}})
-export class Basemodel extends Entity {
+export class Basemodel extends Base {
   @property({
     type: 'number',
-    required: true,
+
     name: 'modified_by',
   })
-  modifiedBy: number;
+  modifiedBy?: number;
 
   @property({
     type: 'number',
-    required: true,
     name: 'created_by',
   })
-  createdBy: number;
-  @property({
-    type: 'date',
-
-    name: 'created_at',
-  })
-  createdAt: string;
-
-  @property({
-    type: 'date',
-
-    name: 'modified_at',
-  })
-  modifiedAt: Date;
+  createdBy?: number;
 
   constructor(data?: Partial<Basemodel>) {
     super(data);

@@ -7,14 +7,14 @@ export class Base extends Entity {
 
     name: 'created_at',
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @property({
     type: 'date',
 
     name: 'modified_at',
   })
-  modifiedAt: Date;
+  modifiedAt?: Date;
   constructor(data?: Partial<Base>) {
     super(data);
   }

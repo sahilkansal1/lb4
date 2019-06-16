@@ -16,7 +16,7 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {Users} from '../models';
+import {Users, Customer} from '../models';
 import {UsersRepository} from '../repositories';
 
 export class UserController {
@@ -46,7 +46,8 @@ export class UserController {
     },
   })
   async count(
-    @param.query.object('where', getWhereSchemaFor(Users)) where?: Where,
+    @param.query.object('where', getWhereSchemaFor(Users))
+    where?: Where<Users>,
   ): Promise<Count> {
     return await this.usersRepository.count(where);
   }
@@ -80,7 +81,7 @@ export class UserController {
   })
   async updateAll(
     @requestBody() users: Users,
-    @param.query.object('where', getWhereSchemaFor(Users)) where?: Where,
+    @param.query.object('where', getWhereSchemaFor(Users)) where?: Where<Users>,
   ): Promise<Count> {
     return await this.usersRepository.updateAll(users, where);
   }
@@ -124,7 +125,13 @@ export class UserController {
   ): Promise<void> {
     await this.usersRepository.replaceById(id, users);
   }
-
+  // @post('/customers/{id}/order')
+  // async createOrder(
+  //   @param.path.number('id') customerId: typeof Customer.prototype.id,
+  //   @requestBody() customer: Customer,
+  // ): Promise<Customer> {
+  //   return await this.usersRepository.customer(customerId).create(customer);
+  // }
   @del('/users/{id}', {
     responses: {
       '204': {

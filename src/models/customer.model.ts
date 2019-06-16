@@ -1,5 +1,7 @@
-import {model, property} from '@loopback/repository';
+import {model, property, hasMany, Order} from '@loopback/repository';
 import {Basemodel} from './basemodel.model';
+import {Users} from './users.model';
+// import {Users} from './users.model';
 @model({settings: {}})
 export class Customer extends Basemodel {
   @property({
@@ -11,9 +13,14 @@ export class Customer extends Basemodel {
   @property({
     type: 'string',
     required: true,
-    name:'customer_name'
+    name: 'customer_name',
   })
   customerName: string;
+
+  @hasMany(() => Users, {
+    keyTo: 'customer',
+  })
+  users?: Users[];
 
   @property({
     type: 'string',

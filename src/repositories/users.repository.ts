@@ -7,9 +7,7 @@ export class UsersRepository extends DefaultCrudRepository<
   Users,
   typeof Users.prototype.id
 > {
-  constructor(
-    @inject('datasources.crudapp') dataSource: CrudappDataSource,
-  ) {
+  constructor(@inject('datasources.crudapp') dataSource: CrudappDataSource) {
     super(Users, dataSource);
   }
 }

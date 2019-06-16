@@ -3,7 +3,3 @@ export * from './customer.model';
 export * from './users.model';
 export * from './basemodel.model';
 export * from './base.model';
-export * from './ss.model';
-export * from './tear.model';
-export * from './test.model';
-export * from './tes.model';

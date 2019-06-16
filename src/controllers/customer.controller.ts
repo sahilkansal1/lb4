@@ -16,7 +16,7 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {Customer} from '../models';
+import {Customer, Users} from '../models';
 import {CustomerRepository} from '../repositories';
 import {UsersRepository} from '../repositories';
 export class CustomerController {
@@ -85,7 +85,13 @@ export class CustomerController {
 
     return await this.customerRepository.find(filter);
   }
-
+  @get('/customers/{id}/order')
+  async createOrder(
+    @param.path.number('id') customerId: typeof Customer.prototype.id,
+    // @requestBody() users: Users,
+  ): Promise<Users[]> {
+    return await this.customerRepository.users(customerId).find();
+  }
   @patch('/customers', {
     responses: {
       '200': {
@@ -106,18 +112,16 @@ export class CustomerController {
     responses: {
       '200': {
         description: 'Customer model instance',
-        content: {'application/json': {schema: {'x-ts-type': Customer}}},
+        content: {
+          'application/json': {schema: {'x-ts-type': {Customer, Users}}},
+        },
       },
     },
   })
   async findById(@param.path.number('id') id: number) {
     let customer = await this.customerRepository.findById(id);
-    // let h = customer.id;
-    // console.log(h);
-    let user = await this.user.find({where: {customer: customer.id}});
-    // console.log(userrr);
-
-    return {customer, user};
+    // let user = await this.user.find({where: {customer: customer.id}});
+    return {customer};
   }
 
   @patch('/customers/{id}', {
